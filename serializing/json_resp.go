@@ -2,6 +2,7 @@ package serializing
 
 import (
 	"github.com/enrichroad/community/errors"
+	"github.com/enrichroad/community/pagination"
 	"github.com/enrichroad/community/reflect"
 )
 
@@ -27,7 +28,7 @@ func JsonData(data interface{}) *JsonResp {
 	}
 }
 
-func JsonPageData(results interface{}, page *Paging) *JsonResp {
+func JsonPageData(results interface{}, page *pagination.Paging) *JsonResp {
 	return JsonData(&PageResult{
 		Results: results,
 		Page:    page,
