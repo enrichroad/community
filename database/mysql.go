@@ -14,6 +14,7 @@ type GormModel struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
+
 type ResolverDSN struct {
 	Sources   []string
 	Replicas  []string

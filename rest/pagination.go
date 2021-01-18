@@ -1,4 +1,4 @@
-package serializing
+package rest
 
 import (
 	"github.com/enrichroad/community/pagination"
