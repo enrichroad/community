@@ -10,7 +10,7 @@ import (
 type JsonResp struct {
 	ErrorCode int         `json:"errorCode"`
 	Message   string      `json:"message"`
-	Data      interface{} `json:"data"`
+	Data      interface{} `json:"date"`
 }
 
 func Json(code int, message string, data interface{}) *JsonResp {
