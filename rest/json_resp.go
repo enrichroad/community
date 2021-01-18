@@ -6,75 +6,75 @@ import (
 	"github.com/enrichroad/community/reflect"
 )
 
-// JsonResp json for http response
-type JsonResp struct {
+// Resp json for http response
+type Resp struct {
 	ErrorCode int         `json:"errorCode"`
 	Message   string      `json:"message"`
 	Data      interface{} `json:"date"`
 }
 
-func Json(code int, message string, data interface{}) *JsonResp {
-	return &JsonResp{
+func Json(code int, message string, data interface{}) *Resp {
+	return &Resp{
 		ErrorCode: code,
 		Message:   message,
 		Data:      data,
 	}
 }
 
-func JsonData(data interface{}) *JsonResp {
-	return &JsonResp{
+func JsonData(data interface{}) *Resp {
+	return &Resp{
 		ErrorCode: 0,
 		Data:      data,
 	}
 }
 
-func JsonPageData(results interface{}, page *pagination.Paging) *JsonResp {
+func JsonPageData(results interface{}, page *pagination.Paging) *Resp {
 	return JsonData(&PageResult{
 		Results: results,
 		Page:    page,
 	})
 }
 
-func JsonCursorData(results interface{}, cursor string) *JsonResp {
+func JsonCursorData(results interface{}, cursor string) *Resp {
 	return JsonData(&CursorResult{
 		Results: results,
 		Cursor:  cursor,
 	})
 }
 
-func JsonSuccess() *JsonResp {
-	return &JsonResp{
+func JsonSuccess() *Resp {
+	return &Resp{
 		ErrorCode: 0,
 		Data:      nil,
 	}
 }
 
-func JsonError(err *errors.CodeError) *JsonResp {
-	return &JsonResp{
+func JsonError(err *errors.CodeError) *Resp {
+	return &Resp{
 		ErrorCode: err.Code,
 		Message:   err.Message,
 		Data:      err.Data,
 	}
 }
 
-func JsonErrorMsg(message string) *JsonResp {
-	return &JsonResp{
+func JsonErrorMsg(message string) *Resp {
+	return &Resp{
 		ErrorCode: 0,
 		Message:   message,
 		Data:      nil,
 	}
 }
 
-func JsonErrorCode(code int, message string) *JsonResp {
-	return &JsonResp{
+func JsonErrorCode(code int, message string) *Resp {
+	return &Resp{
 		ErrorCode: code,
 		Message:   message,
 		Data:      nil,
 	}
 }
 
-func JsonErrorData(code int, message string, data interface{}) *JsonResp {
-	return &JsonResp{
+func JsonErrorData(code int, message string, data interface{}) *Resp {
+	return &Resp{
 		ErrorCode: code,
 		Message:   message,
 		Data:      data,
@@ -106,6 +106,6 @@ func (builder *RspBuilder) Build() map[string]interface{} {
 	return builder.Data
 }
 
-func (builder *RspBuilder) JsonResult() *JsonResp {
+func (builder *RspBuilder) JsonResult() *Resp {
 	return JsonData(builder.Data)
 }
