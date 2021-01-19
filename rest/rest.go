@@ -7,11 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mlogclub/simple/date"
-
 	"github.com/iris-contrib/schema"
 	"github.com/kataras/iris/v12"
 
+	"github.com/enrichroad/community/date"
 	"github.com/enrichroad/community/pagination"
 	"github.com/enrichroad/community/strcase"
 )
