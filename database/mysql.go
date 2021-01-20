@@ -16,9 +16,9 @@ type GormModel struct {
 }
 
 type ResolverDSN struct {
-	Sources   []string
-	Replicas  []string
-	Secondary []string
+	Sources   []string `yaml:"Sources"`
+	Replicas  []string `yaml:"Replicas"`
+	Secondary []string `yaml:"Secondary"`
 }
 
 var (
