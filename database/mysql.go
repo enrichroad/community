@@ -35,7 +35,7 @@ func OpenDB(dsn ResolverDSN, config *gorm.Config, maxIdleConnes, maxOpenConnes i
 		return
 	}
 
-	if err := db.Use(
+	if err = db.Use(
 		dbresolver.Register(
 			dbresolver.Config{
 				Sources:  buildDialector(dsn.Sources),
