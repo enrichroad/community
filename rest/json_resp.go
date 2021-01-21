@@ -6,18 +6,19 @@ import (
 	"github.com/enrichroad/community/reflect"
 )
 
-// Resp json for http response
 type Resp struct {
 	ErrorCode int         `json:"errorCode"`
 	Message   string      `json:"message"`
-	Data      interface{} `json:"date"`
+	Data      interface{} `json:"data"`
+	Success   bool        `json:"success"`
 }
 
-func Json(code int, message string, data interface{}) *Resp {
+func Json(code int, message string, data interface{}, success bool) *Resp {
 	return &Resp{
 		ErrorCode: code,
 		Message:   message,
 		Data:      data,
+		Success:   success,
 	}
 }
 
@@ -25,6 +26,7 @@ func JsonData(data interface{}) *Resp {
 	return &Resp{
 		ErrorCode: 0,
 		Data:      data,
+		Success:   true,
 	}
 }
 
@@ -46,6 +48,7 @@ func JsonSuccess() *Resp {
 	return &Resp{
 		ErrorCode: 0,
 		Data:      nil,
+		Success:   true,
 	}
 }
 
@@ -54,6 +57,7 @@ func JsonError(err *errors.CodeError) *Resp {
 		ErrorCode: err.Code,
 		Message:   err.Message,
 		Data:      err.Data,
+		Success:   false,
 	}
 }
 
@@ -62,6 +66,7 @@ func JsonErrorMsg(message string) *Resp {
 		ErrorCode: 0,
 		Message:   message,
 		Data:      nil,
+		Success:   false,
 	}
 }
 
@@ -70,6 +75,7 @@ func JsonErrorCode(code int, message string) *Resp {
 		ErrorCode: code,
 		Message:   message,
 		Data:      nil,
+		Success:   false,
 	}
 }
 
@@ -78,6 +84,7 @@ func JsonErrorData(code int, message string, data interface{}) *Resp {
 		ErrorCode: code,
 		Message:   message,
 		Data:      data,
+		Success:   false,
 	}
 }
 
