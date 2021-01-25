@@ -25,7 +25,7 @@ var (
 	db *gorm.DB
 )
 
-func OpenDB(dsn ResolverDSN, config *gorm.Config, maxIdleConnes, maxOpenConnes int, models ...interface{}) (err error) {
+func OpenDB(dsn ResolverDSN, config *gorm.Config, maxIdleConnes, maxOpenConnes int) (err error) {
 	if config == nil {
 		config = &gorm.Config{}
 	}
@@ -53,9 +53,6 @@ func OpenDB(dsn ResolverDSN, config *gorm.Config, maxIdleConnes, maxOpenConnes i
 		return
 	}
 
-	if err = db.AutoMigrate(models...); nil != err {
-		log.Errorf("auto migrate tables failed: %s", err.Error())
-	}
 	return
 }
 
@@ -71,3 +68,12 @@ func buildDialector(dsns []string) []gorm.Dialector {
 	}
 	return res
 }
+
+// AutoMigrate ...
+func AutoMigrate(models ...interface{})  {
+	if err := db.AutoMigrate(models...); nil != err {
+		log.Errorf("auto migrate tables failed: %s", err.Error())
+	}
+}
+
+
